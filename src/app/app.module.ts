@@ -10,6 +10,7 @@ import {MatGridList, MatGridListModule} from "@angular/material/grid-list";
 import { SearchResultsComponent } from './search-results/search-results.component';
 import {MatDividerModule} from "@angular/material/divider";
 import { MenuPageComponent } from './menu-page/menu-page.component';
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { MenuPageComponent } from './menu-page/menu-page.component';
     BrowserAnimationsModule,
     MatInputModule,
     MatGridListModule,
-    MatDividerModule
+    MatDividerModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

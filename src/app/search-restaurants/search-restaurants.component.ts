@@ -9,7 +9,16 @@ export class SearchRestaurantsComponent implements OnInit {
 
   constructor() { }
 
+  searchResultsVisible = false;
+  searchString = "";
+
   ngOnInit(): void {
   }
+
+  goClick() {
+    console.log("WENT!", this.searchString);
+    this.searchResultsVisible = true;
+  }
+
 
 }

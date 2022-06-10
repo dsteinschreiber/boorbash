@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 export interface Tile {
   color: string;
@@ -14,9 +14,12 @@ export interface Tile {
 })
 export class SearchResultsComponent implements OnInit {
 
+  @Input() searchString = "";
+
   constructor() { }
 
   ngOnInit(): void {
+    console.log("Results loaded", this.searchString);
   }
 
   tiles: Tile[] = [

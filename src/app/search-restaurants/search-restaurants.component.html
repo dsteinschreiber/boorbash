@@ -1,14 +1,11 @@
 <form class="example-form">
   <mat-form-field class="example-full-width" appearance="fill">
     <mat-label>Search for Restaurant</mat-label>
-    <input matInput placeholder="Ex. Pizza Hut" value="">
+    <input matInput placeholder="Ex. Pizza Hut" value="" [(ngModel)]="searchString" name="searchString">
   </mat-form-field>
-  <button mat-raised-button>GO!</button>
+  <button mat-raised-button (click)="goClick()">GO!</button>
 </form>
 
-
-
-
-<app-search-results></app-search-results>
+<app-search-results *ngIf="searchResultsVisible" [searchString]="searchString"></app-search-results>
 
 
