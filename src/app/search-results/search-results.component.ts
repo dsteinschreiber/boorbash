@@ -1,18 +1,7 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core'
+import {RestaurantData} from "../interfaces/restaurant-data";
+import {BackEndConnectionService} from "../back-end-connection.service";
 
-export interface Tile {
-  color: string;
-  cols: number;
-  rows: number;
-  text: string;
-}
-
-interface RestaurantData {
-  pictureUrl?: string;
-  name: string;
-  description: string;
-  rating: number;
-}
 
 @Component({
   selector: 'app-search-results',
@@ -25,25 +14,14 @@ export class SearchResultsComponent implements OnInit {
 
   searchResult: Array<RestaurantData> = [];
 
-  sampleResults = [
-    {
-      name: "Little Italy",
-      description: "Restaurant description for some italian restaurant",
-      rating: 4.5
-    },
-    {
-      name: "Danny's Burgers",
-      description: "Best burgers in town!",
-      rating: 5.0
-    }
-  ]
-
-  constructor() {
+  constructor(
+    private backendService: BackEndConnectionService
+  ) {
   }
 
   ngOnInit(): void {
     console.log("Results loaded", this.searchString);
-    this.searchResult = this.sampleResults;
+    this.searchResult = this.backendService.restaurantSearch(this.searchString);
   }
 
 }
