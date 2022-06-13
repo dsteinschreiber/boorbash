@@ -21,7 +21,9 @@ export class SearchResultsComponent implements OnInit {
 
   ngOnInit(): void {
     console.log("Results loaded", this.searchString);
-    this.searchResult = this.backendService.restaurantSearch(this.searchString);
+    this.backendService.restaurantSearch(this.searchString).subscribe(
+      data => this.searchResult = data
+    );
   }
 
 }

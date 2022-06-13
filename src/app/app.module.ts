@@ -6,11 +6,12 @@ import { AppComponent } from './app.component';
 import { SearchRestaurantsComponent } from './search-restaurants/search-restaurants.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatInputModule} from "@angular/material/input";
-import {MatGridList, MatGridListModule} from "@angular/material/grid-list";
+import {MatGridListModule} from "@angular/material/grid-list";
 import { SearchResultsComponent } from './search-results/search-results.component';
 import {MatDividerModule} from "@angular/material/divider";
 import { MenuPageComponent } from './menu-page/menu-page.component';
 import {FormsModule} from "@angular/forms";
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import {FormsModule} from "@angular/forms";
     MatInputModule,
     MatGridListModule,
     MatDividerModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
