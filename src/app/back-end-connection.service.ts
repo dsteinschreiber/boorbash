@@ -14,7 +14,7 @@ export class BackEndConnectionService {
 
 
   restaurantSearch(searchString: string): Observable<any> {
-    return this.httpClient.get("http://localhost:8080/restaurantSearch");
+    return this.httpClient.get("restaurantSearch");
   }
 
 }
