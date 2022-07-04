@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {SearchResultsComponent} from "../search-results/search-results.component";
 
 @Component({
   selector: 'app-search-restaurants',
@@ -9,6 +10,8 @@ export class SearchRestaurantsComponent implements OnInit {
 
   constructor() { }
 
+  @ViewChild(SearchResultsComponent) searchResultComponent!: SearchResultsComponent;
+
   searchResultsVisible = false;
   searchString = "";
 
@@ -18,6 +21,7 @@ export class SearchRestaurantsComponent implements OnInit {
   goClick() {
     console.log("WENT!", this.searchString);
     this.searchResultsVisible = true;
+    this.searchResultComponent!.doSearch();
   }
 
 

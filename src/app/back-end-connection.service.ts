@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {RestaurantData} from "./interfaces/restaurant-data";
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpParams} from "@angular/common/http";
 import {Observable} from "rxjs";
 
 @Injectable({
@@ -12,9 +12,14 @@ export class BackEndConnectionService {
     private httpClient: HttpClient
   ) { }
 
+  baseUrl = "http://localhost:8080/";
 
   restaurantSearch(searchString: string): Observable<any> {
-    return this.httpClient.get("restaurantSearch");
+    console.log("searching", searchString);
+
+    let params = new HttpParams().set("searchString", searchString);
+
+    return this.httpClient.get(this.baseUrl + "restaurantSearch", {params: params});
   }
 
 }
