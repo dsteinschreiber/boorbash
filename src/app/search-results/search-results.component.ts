@@ -26,6 +26,10 @@ export class SearchResultsComponent implements OnInit {
     );
   }
 
+  onResultClick(name: any) {
+    console.log("CLICK! ", name);
+  }
+
   ngOnInit(): void {
   }
 

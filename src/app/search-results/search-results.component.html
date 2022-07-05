@@ -3,29 +3,33 @@
 
     <ng-container *ngFor="let result of searchResult">
 
-      <mat-grid-tile
-        [colspan]="1"
-        [rowspan]="2">
-        <img [src]="result.pictureUrl">
-      </mat-grid-tile>
+      <div (click)="onResultClick(result.name)">
 
-      <mat-grid-tile
-        [colspan]="3"
-        [rowspan]="1">
-        {{result.name}}
-      </mat-grid-tile>
+        <mat-grid-tile
+          [colspan]="1"
+          [rowspan]="2">
+          <img [src]="result.pictureUrl">
+        </mat-grid-tile>
 
-      <mat-grid-tile
-        [colspan]="2"
-        [rowspan]="1">
-        {{result.description}}
-      </mat-grid-tile>
+        <mat-grid-tile
+          [colspan]="3"
+          [rowspan]="1">
+          {{result.name}}
+        </mat-grid-tile>
 
-      <mat-grid-tile
-        [colspan]="1"
-        [rowspan]="1">
-        {{result.rating}}
-      </mat-grid-tile>
+        <mat-grid-tile
+          [colspan]="2"
+          [rowspan]="1">
+          {{result.description}}
+        </mat-grid-tile>
+
+        <mat-grid-tile
+          [colspan]="1"
+          [rowspan]="1">
+          {{result.rating}}
+        </mat-grid-tile>
+
+      </div>
 
     </ng-container>
 
