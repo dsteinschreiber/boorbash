@@ -22,7 +22,10 @@ export class SearchResultsComponent implements OnInit {
   doSearch() {
     console.log("Results loaded", this.searchString);
     this.backendService.restaurantSearch(this.searchString).subscribe(
-      data => this.searchResult = data
+      data => {
+        this.searchResult = data;
+        console.log("Coming from backend: ", data)
+      }
     );
   }
 
