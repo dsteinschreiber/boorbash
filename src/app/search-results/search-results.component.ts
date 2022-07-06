@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core'
 import {RestaurantData} from "../interfaces/restaurant-data";
 import {BackEndConnectionService} from "../back-end-connection.service";
+import {Router} from "@angular/router";
 
 
 @Component({
@@ -15,7 +16,8 @@ export class SearchResultsComponent implements OnInit {
   searchResult: Array<RestaurantData> = [];
 
   constructor(
-    private backendService: BackEndConnectionService
+    private backendService: BackEndConnectionService,
+    private router: Router
   ) {
   }
 
@@ -29,8 +31,9 @@ export class SearchResultsComponent implements OnInit {
     );
   }
 
-  onResultClick(name: any) {
-    console.log("CLICK! ", name);
+  onResultClick(id: any) {
+    console.log("CLICK! ", id);
+    this.router.navigateByUrl('menu');
   }
 
   ngOnInit(): void {
