@@ -5,7 +5,7 @@ import {MenuPageComponent} from "./menu-page/menu-page.component";
 
 const routes: Routes = [
   {path: '', component: SearchRestaurantsComponent},
-  {path: 'menu', component: MenuPageComponent}
+  {path: 'menu/:restaurantId', component: MenuPageComponent}
 ];
 
 @NgModule({

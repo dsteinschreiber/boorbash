@@ -33,7 +33,7 @@ export class SearchResultsComponent implements OnInit {
 
   onResultClick(id: any) {
     console.log("CLICK! ", id);
-    this.router.navigateByUrl('menu');
+    this.router.navigate(["menu", id]);
   }
 
   ngOnInit(): void {

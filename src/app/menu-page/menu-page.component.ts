@@ -1,4 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {ActivatedRoute, Params} from "@angular/router";
+import {BackEndConnectionService} from "../back-end-connection.service";
 
 @Component({
   selector: 'app-menu-page',
@@ -7,11 +9,24 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class MenuPageComponent implements OnInit {
 
-  @Input() restaurantId!: number;
+  restaurantId!: number;
+  menu!: any;
 
-  constructor() { }
+  constructor(
+    private route: ActivatedRoute,
+    private backendService: BackEndConnectionService
+  ) {
+  }
 
   ngOnInit(): void {
+    this.route.params.subscribe(
+      (params: Params) => {
+        this.restaurantId = params['restaurantId'];
+        this.backendService.getMenu(this.restaurantId).subscribe(
+          data => this.menu = data
+        );
+      }
+    );
   }
 
 }
