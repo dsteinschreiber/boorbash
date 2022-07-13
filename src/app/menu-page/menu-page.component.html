@@ -1,1 +1,26 @@
-<p>menu-page works!</p>
+<div style="width: 500px">
+  <ng-container *ngFor="let division of menu.menuDivisions">
+    <p>
+      {{division.divisionName}}
+    </p>
+
+    <ng-container *ngFor="let item of division.menuItems">
+      <p>
+        {{item.dishName}}
+      </p>
+      <p>
+        {{item.dishDescription}}
+      </p>
+      <p>
+        {{item.dishPrice}}
+      </p>
+      <img [src]="item.dishPicUrl">
+
+
+    </ng-container>
+
+
+  </ng-container>
+
+
+</div>
