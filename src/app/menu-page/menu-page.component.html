@@ -1,29 +1,40 @@
-<div style="width: 500px">
+<div style="width: 1000px; padding-left: 20px">
 
 <!--for(MenuDivision division: menu.menuDivisions){
-    System.out.println(division.divisionName);
+    sout(division.divisionName);
     for (MenuItem item: division.menuItems){
       sout(item.dishName);
       ...
       }
   }-->
+  <div (click)="onCartClick()">
+  <button mat-raised-button>
+    GO TO CART
+  </button>
+  </div>
+
+  <p></p>
 
   <ng-container *ngFor="let division of menu.menuDivisions">
-    <p>
+    <h2>
       {{division.divisionName}}
-    </p>
+    </h2>
 
     <ng-container *ngFor="let item of division.menuItems">
-      <p>
-        {{item.dishName}}
-      </p>
-      <p>
+
+      <img [src]="item.dishPicUrl" width="100px">
+
+      <h4>
+        {{item.dishName}} - ${{item.dishPrice}}
+      </h4>
+
+      <h5>
         {{item.dishDescription}}
-      </p>
+      </h5>
+
       <p>
-        {{item.dishPrice}}
+        <button mat-raised-button>ADD TO CART</button>
       </p>
-      <img [src]="item.dishPicUrl">
 
 
     </ng-container>

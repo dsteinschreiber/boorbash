@@ -12,13 +12,16 @@ import {MatDividerModule} from "@angular/material/divider";
 import { MenuPageComponent } from './menu-page/menu-page.component';
 import {FormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
+import {MatButtonModule} from "@angular/material/button";
+import { CartComponent } from './cart/cart.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SearchRestaurantsComponent,
     SearchResultsComponent,
-    MenuPageComponent
+    MenuPageComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +31,8 @@ import {HttpClientModule} from "@angular/common/http";
     MatGridListModule,
     MatDividerModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

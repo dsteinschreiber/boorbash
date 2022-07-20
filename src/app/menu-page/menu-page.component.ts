@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {ActivatedRoute, Params} from "@angular/router";
+import {ActivatedRoute, Params, Router} from "@angular/router";
 import {BackEndConnectionService} from "../back-end-connection.service";
 import {Menu} from "../interfaces/menu";
 
@@ -15,9 +15,16 @@ export class MenuPageComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private backendService: BackEndConnectionService
   ) {
   }
+
+  onCartClick(){
+    console.log("Cart Click!");
+    this.router.navigate(["cart"]);
+  }
+
 
   ngOnInit(): void {
     this.route.params.subscribe(
