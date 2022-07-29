@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {BackEndConnectionService} from "../back-end-connection.service";
 import {Menu} from "../interfaces/menu";
+import {CartService} from "../cart/cart.service";
 
 @Component({
   selector: 'app-menu-page',
@@ -16,15 +17,37 @@ export class MenuPageComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private backendService: BackEndConnectionService
+    private backendService: BackEndConnectionService,
+    private cartService: CartService
   ) {
   }
 
-  onCartClick(){
-    console.log("Cart Click!");
-    this.router.navigate(["cart"]);
+  getItemQuantity(itemName: string): number{
+    let result = 0;
+
+    for (let item of this.cartService.cart.items) {
+      if (itemName == item.item) {
+        result = item.quantity;
+      }
+    }
+
+    return result;
   }
 
+  onCartClick(){
+    console.log("Cart Click! ", this.restaurantId);
+    this.router.navigate(["cart", this.restaurantId]);
+  }
+
+  addClick(dishName: string, dishPrice: number){
+    console.log("Adding to cart! ", dishName);
+    this.cartService.add(dishName, dishPrice);
+  }
+
+  removeClick(dishName: string){
+    console.log("Removing from cart! ", dishName);
+    this.cartService.remove(dishName);
+  }
 
   ngOnInit(): void {
     this.route.params.subscribe(

@@ -32,9 +32,14 @@
         {{item.dishDescription}}
       </h5>
 
+      <h6>in cart: {{getItemQuantity(item.dishName)}}</h6>
+
       <p>
-        <button mat-raised-button>ADD TO CART</button>
+        <button (click)="addClick(item.dishName, item.dishPrice)" mat-raised-button>ADD</button>
+        <button (click)="removeClick(item.dishName)" mat-raised-button>REMOVE</button>
+
       </p>
+
 
 
     </ng-container>
