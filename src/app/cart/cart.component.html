@@ -1,0 +1,10 @@
+<div style="padding-left: 20px">
+<h1>HERE IS YOUR CART:</h1>
+<ng-container *ngFor="let item of cartService.cart.items">
+  {{item.item}}
+  x{{item.quantity}}
+  at {{item.unitPrice}} = {{item.unitPrice * item.quantity}}
+  <br>
+</ng-container>
+</div>
+

@@ -23,15 +23,7 @@ export class MenuPageComponent implements OnInit {
   }
 
   getItemQuantity(itemName: string): number{
-    let result = 0;
-
-    for (let item of this.cartService.cart.items) {
-      if (itemName == item.item) {
-        result = item.quantity;
-      }
-    }
-
-    return result;
+    return this.cartService.getItemQuantity(itemName);
   }
 
   onCartClick(){
