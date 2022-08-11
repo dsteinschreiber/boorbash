@@ -1,4 +1,5 @@
 export interface Menu {
+  restaurantId: number,
   menuDivisions: Array<{
     menuItems: Array<{
       dishName: string,

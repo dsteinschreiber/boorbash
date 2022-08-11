@@ -22,8 +22,10 @@ export class MenuPageComponent implements OnInit {
   ) {
   }
 
+
+
   getItemQuantity(itemName: string): number{
-    return this.cartService.getItemQuantity(itemName);
+    return this.cartService.getItemQuantity(itemName, this.restaurantId);
   }
 
   onCartClick(){
@@ -33,23 +35,20 @@ export class MenuPageComponent implements OnInit {
 
   addClick(dishName: string, dishPrice: number){
     console.log("Adding to cart! ", dishName);
-    this.cartService.add(dishName, dishPrice);
+    this.cartService.add(dishName, dishPrice, this.restaurantId);
   }
 
   removeClick(dishName: string){
     console.log("Removing from cart! ", dishName);
-    this.cartService.remove(dishName);
+    this.cartService.remove(dishName, this.restaurantId);
   }
 
   ngOnInit(): void {
-    this.route.params.subscribe(
-      (params: Params) => {
-        this.restaurantId = params['restaurantId'];
-        this.backendService.getMenu(this.restaurantId).subscribe(
-          data => this.menu = data
-        );
-      }
-    );
+    this.route.data.subscribe(({menu}) =>
+    {
+      this.menu = menu;
+      this.restaurantId = menu.restaurantId;
+    });
   }
 
 }

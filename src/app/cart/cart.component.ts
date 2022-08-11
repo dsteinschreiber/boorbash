@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {Router} from "@angular/router";
+import {ActivatedRoute, Params, Router} from "@angular/router";
 import {CartService} from "./cart.service";
+
 
 @Component({
   selector: 'app-cart',
@@ -9,13 +10,22 @@ import {CartService} from "./cart.service";
 })
 export class CartComponent implements OnInit {
 
+  restaurantId!: number;
 
   constructor(
-    public cartService: CartService
+    public cartService: CartService,
+    private route: ActivatedRoute,
+
   ) {}
 
   ngOnInit(): void {
+    this.route.params.subscribe(
+      (params: Params) => {
+        this.restaurantId = parseInt(params['restaurantId']); // Forcing restaurantId to be number
+      }
+    )
   }
+
 
 
 }

@@ -1,4 +1,5 @@
 import {Component, Injectable} from '@angular/core';
+import {Cart} from "../interfaces/cart";
 
 
 @Injectable({
@@ -6,48 +7,79 @@ import {Component, Injectable} from '@angular/core';
 })
 export class CartService {
 
+  carts = new Array<Cart>();
 
-  cart = {
-    restaurantName: 'Little Italy',
-    items: new Array<any>()
-  };
 
-  getItemQuantity(itemName: string): number{
+  getItemQuantity(itemName: string, restaurantId: number): number {
+
     let result = 0;
+    // ****
 
-    for (let item of this.cart.items) {
-      if (itemName == item.item) {
-        result = item.quantity;
+    for (let cart of this.carts) {
+      if (cart.restaurantId === restaurantId) {
+        for (let item of cart.items) {
+          if (itemName === item.item) {
+            result = item.quantity;
+          }
+        }
       }
     }
 
     return result;
   }
 
-  add(dishName: string, dishPrice: number){
-    console.log("Adding " + dishName + " at $" + dishPrice + " to cart!");
-    for (let item of this.cart.items){
-      if (dishName === item.item){
-        item.quantity++;
+  add(dishName: string, dishPrice: number, restaurantId: number) {
+    console.log("Adding " + dishName + " at $" + dishPrice + " to restaurant " + restaurantId + " cart!");
+
+    for (let cart of this.carts) {
+      if (cart.restaurantId === restaurantId) {
+        for (let item of cart.items) {
+          if (dishName === item.item) {
+            item.quantity++;
+            return;
+          }
+        }
+        cart.items.push({unitPrice: dishPrice, item: dishName, quantity: 1});
         return;
       }
     }
-    this.cart.items.push({unitPrice: dishPrice, item: dishName, quantity: 1});
+
+    this.carts.push({restaurantId: restaurantId, items: [{unitPrice: dishPrice, item: dishName, quantity: 1}]})
+
     return;
   }
 
-  remove(dishName: string){
+  remove(dishName: string, restaurantId: number) {
     console.log("Removing " + dishName + " from cart!");
-    for (let i = 0; i < this.cart.items.length; i++){
-      if (dishName === this.cart.items[i].item){
-        this.cart.items[i].quantity--;
-        if (this.cart.items[i].quantity === 0){
-          this.cart.items.splice(i, 1);
+
+    for (let cart of this.carts) {
+      if (cart.restaurantId === restaurantId) {
+        for (let i = 0; i < cart.items.length; i++) {
+          if (dishName === cart.items[i].item) {
+            cart.items[i].quantity--;
+            if (cart.items[i].quantity === 0) {
+              cart.items.splice(i, 1);
+            }
+          }
         }
+        console.log("Cart is: ", cart);
       }
     }
-    console.log("Cart is: ", this.cart);
   }
+
+  getCart(restaurantId: number): Cart {
+    console.log("Looking for " + restaurantId, this.carts);
+
+    for (let cart of this.carts) {
+      if (cart.restaurantId === restaurantId) {
+        console.log("Found cart! " + cart);
+        return cart;
+      }
+    }
+
+    return {restaurantId: restaurantId, items: []};
+  }
+
 
   constructor() {
   }
